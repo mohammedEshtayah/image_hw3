@@ -90,6 +90,22 @@ def Highpass(Original_Image):
     cv2.imshow('Original image',img_back.astype(np.uint8) )
     cv2.waitKey(0)
     cv2.destroyAllWindows()    
+def Spectrum_Average(Original_Image):
+    org_image=cv2.imread(Original_Image,0).astype(np.uint8)
+    f = np.fft.fft2(org_image)
+    fshift = np.fft.fftshift(f)
+    cv2.imshow('Original image',fshift.astype(np.uint8) )
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()   
+    height = np.size(org_image, 0)
+    width = np.size(org_image, 1) 
+    avg=height*width
+    d=np.zeros(( np.size(fshift, 0), np.size(fshift, 1) ))
+    for u in range( height ):
+        for v in range( width ):
+            fshift[u][v]=fshift[u][v]
+
+
 if __name__ == "__main__":
 
     Original_Image = str(sys.argv[1])
@@ -99,7 +115,8 @@ if __name__ == "__main__":
     #Fourier_transform(Original_Image)
     #Inverse_Fourier_transform(Original_Image)
     #Lowpass(Original_Image)
-    Highpass(Original_Image)
+    Spectrum_Average(Original_Image) 
+    #Highpass(Original_Image)
     #cv2.imshow('After applying the filter', new_image)
     #Original_Image = cv2.imread(Original_Image).astype(np.uint8)
     #cv2.imshow('Original image', Original_Image)
