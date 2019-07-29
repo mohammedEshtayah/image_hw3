@@ -101,9 +101,9 @@ def Spectrum_Average(Original_Image):
     width = np.size(org_image, 1) 
     avg=height*width
     d=np.zeros(( np.size(fshift, 0), np.size(fshift, 1) ))
-    for u in range( height ):
-        for v in range( width ):
-            fshift[u][v]=fshift[u][v]
+    #for u in range( height ):
+        #for v in range( width ):
+            #d[u][v]=fshift[u][v]/avg
 
 def Inverse_Fourier_transform(Original_Image):
     org_image=cv2.imread(Original_Image,0).astype(np.uint8)
