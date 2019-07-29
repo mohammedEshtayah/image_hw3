@@ -105,6 +105,31 @@ def Spectrum_Average(Original_Image):
         for v in range( width ):
             fshift[u][v]=fshift[u][v]
 
+def Inverse_Fourier_transform(Original_Image):
+    org_image=cv2.imread(Original_Image,0).astype(np.uint8)
+    height = np.size(org_image, 0);  width = np.size(org_image, 1)
+    new_image=np.zeros((height,width))
+    for u in range( height):
+        for v in range( width) :
+            sum=0
+            for x in range( height ):
+                for y in range( width ):
+                    sum+=org_image[x][y] * np.exp(2 *np.pi* ( u*x /height +   v*y / width))
+ 
+            new_image[u][v]=int(sum) 
+
+def Fourier_transform(Original_Image):
+    org_image=cv2.imread(Original_Image,0).astype(np.uint8)
+    height = np.size(org_image, 0);  width = np.size(org_image, 1)
+    new_image=np.zeros((height,width))
+    for u in range( height):
+        for v in range( width) :
+            sum=0
+            for x in range( height ):
+                for y in range( width ):
+                    sum+=org_image[x][y] * np.exp(-2j *np.pi* ( u*x /height +   v*y / width))
+ 
+            new_image[u][v]=int(sum) 
 
 if __name__ == "__main__":
 
